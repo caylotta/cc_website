@@ -1,36 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ccharm</title>
-  <link rel="icon" type="image/svg" href="cc_web_icon.svg">
+  <meta charset="UTF-8">
+  <title>Your Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Google Font: Arimo -->
+  <link href="https://fonts.googleapis.com/css2?family=Arimo&display=swap" rel="stylesheet">
+
   <style>
+    /* Global Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: #111;
-      color: white;
-      font-family: sans-serif;
+      font-family: 'Arimo', sans-serif;
+      background-color: black;
+      color: #f0f0f0; /* off-white */
+    }
+
+    .hero {
+      background-image: url('your-hero-image.jpg'); /* Replace with your image URL */
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .columns {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px 60px;
+    }
+
+    .column {
+      flex: 1;
       text-align: center;
-      padding: 50px;
+      font-size: 18pt;
     }
-    img {
-      max-width: 80%;
+
+    .column.center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .button-image {
+      max-width: 150px;
       height: auto;
-      margin: 20px auto;
+      cursor: pointer;
     }
-    a {
-      color: #84877a;
-      text-decoration: underline;
+
+    .second-image {
+      width: 100%;
       display: block;
-      margin-top: 20px;
-      font-size: 18px;
+    }
+
+    .impressum {
+      text-align: center;
+      font-size: 12pt;
+      padding: 30px 20px;
+      color: #ccc;
+    }
+
+    @media (max-width: 768px) {
+      .columns {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .column {
+        font-size: 16pt;
+      }
     }
   </style>
 </head>
+
 <body>
-  <img src="cc_heroimage_081025CK.png" alt="Big Image">
-  <h1>lacking ccharm?</h1>
-  <p>Our design practice aims to reveal cherished value, build conceptual context and create an approachable persona.</p>
-  <a href="cc_portfolio_trial.pdf" target="_blank">Portfolio</a>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="columns">
+      <div class="column">Left column text here</div>
+      
+      <div class="column center">
+        <a href="your-file.pdf" target="_blank">
+          <img src="your-button-image.png" alt="Download PDF" class="button-image">
+        </a>
+      </div>
+      
+      <div class="column">Right column text here</div>
+    </div>
+  </div>
+
+  <!-- Second Full-width Image -->
+  <img src="your-second-image.jpg" alt="Second Section Image" class="second-image">
+
+  <!-- Impressum Section -->
+  <div class="impressum">
+    Your Impressum text goes here. Company info, legal details, contact, etc.
+  </div>
+
 </body>
 </html>
