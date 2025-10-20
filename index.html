@@ -23,7 +23,7 @@
     }
 
     .hero {
-      background-image: url('cc_heroimage_201025.png'); /* Replace with your image URL */
+      background-image: url('cc_heroimage_201025.png'); /* Default hero image */
       background-size: cover;
       background-position: center;
       height: 100vh;
@@ -59,23 +59,43 @@
 
     .second-image {
       width: 100%;
+      height: auto;
       display: block;
     }
 
     .impressum {
       text-align: center;
-      font-size: 8,5pt;
+      font-size: 8.5pt;
       padding: 30px 20px;
       color: #ccc;
     }
 
+    /* ----------- MOBILE STYLES ----------- */
     @media (max-width: 768px) {
+      .hero {
+        background-image: url('cc_heroimage_mobile.jpg'); /* Mobile-optimized image */
+        height: auto;
+        padding-top: 60%; /* Maintain aspect ratio */
+      }
+
       .columns {
         flex-direction: column;
         gap: 20px;
+        padding: 30px 20px;
       }
+
       .column {
-        font-size: 16pt;
+        font-size: 14pt;
+        text-align: center;
+      }
+
+      .button-image {
+        max-width: 200px;
+      }
+
+      .second-image {
+        width: 100%;
+        height: auto;
       }
     }
   </style>
@@ -86,8 +106,10 @@
   <!-- Hero Section -->
   <div class="hero">
     <div class="columns">
-      <div class="column">Berlin based collaborative design practice 
-between Johanna Behrens and Carlotta Krämer.</div>
+      <div class="column">
+        Berlin based collaborative design practice<br>
+        between Johanna Behrens and Carlotta Krämer.
+      </div>
       
       <div class="column center">
         <a href="cc_portfolio_trial.pdf" target="_blank">
@@ -95,8 +117,11 @@ between Johanna Behrens and Carlotta Krämer.</div>
         </a>
       </div>
       
-      <div class="column">Our design practice aims to reveal 
-cherished value, build conceptual context and create an approachable persona.</div>
+      <div class="column">
+        Our design practice aims to reveal<br>
+        cherished value, build conceptual context<br>
+        and create an approachable persona.
+      </div>
     </div>
   </div>
 
