@@ -69,9 +69,9 @@ body {
 }
 
 .carousel-cell {
+  background: transparent;
   margin: 0;
   padding: 0;
-  background: transparent;
   display: inline-block;
   vertical-align: top;
 }
@@ -79,7 +79,7 @@ body {
 .image-wrapper {
   display: inline-block;
   vertical-align: top;
-  line-height: 0; /* removes spacing around inline-blocks */
+  text-align: left;
 }
 
 .image-wrapper img {
@@ -89,17 +89,14 @@ body {
 }
 
 .image-wrapper p {
+  margin: 6px 0 0 0;
   font-size: 10pt;
   color: #f0f0f0;
-  margin: 6px 0 0 0;
-  line-height: 1.3;
-  width: 100%;
-  max-width: 80%;           /* critical: keeps text inside image width */
-  word-wrap: break-word;     /* breaks long words if needed */
-  white-space: normal;       /* allows line breaks */
-  text-align: left;
+  line-height: 1.4;
+  max-width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
 }
-
 
 /* Impressum */
 .impressum {
@@ -345,38 +342,46 @@ logo, flyer, & further assets</p>
 </div>
 
   
-  
   <!-- Impressum Section -->
   <div class="impressum">
     Your Impressum text goes here. Company info, legal details, contact, etc.
   </div>
 
-<script>
-  window.addEventListener('load', () => {
-    document.querySelectorAll('.image-wrapper').forEach(wrapper => {
-      const img = wrapper.querySelector('img');
-      const p = wrapper.querySelector('p');
-
-      function adjustWidth() {
-        const width = img.offsetWidth;
-        wrapper.style.width = width + 'px';
-        p.style.width = width + 'px';
-      }
-
-      if (img.complete) {
-        adjustWidth();
-      } else {
-        img.onload = adjustWidth;
-      }
-    });
-  });
-</script>
-
-
-<!-- Flickity Library -->
+<!-- Flickity -->
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
+<script>
+  function setWrapperWidths() {
+    document.querySelectorAll('.carousel-cell').forEach(cell => {
+      const wrapper = cell.querySelector('.image-wrapper');
+      const img = wrapper.querySelector('img');
+      const text = wrapper.querySelector('p');
+
+      if (img && img.complete) {
+        const width = img.offsetWidth;
+        wrapper.style.width = width + 'px';
+        text.style.width = width + 'px';
+        cell.style.width = width + 'px';
+      }
+    });
+  }
+
+  window.addEventListener('load', () => {
+    setWrapperWidths();
+
+    // Delay Flickity init until layout is stable
+    const carousel = document.querySelector('.carousel');
+    new Flickity(carousel, {
+      wrapAround: true,
+      pageDots: false,
+      prevNextButtons: true,
+      imagesLoaded: true,
+      cellAlign: 'left',
+      contain: true
+    });
+  });
+</script>
 
 </body>
 </html>
