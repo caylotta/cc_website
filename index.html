@@ -64,41 +64,38 @@ body {
 }
 
 /* Carousel */
-.carousel-wrapper {
-  margin-top: 100px;
-  background: transparent;
-}
-
 .carousel {
-  background: transparent !important;
+  background: transparent;
 }
 
 .carousel-cell {
   padding: 0;
   margin: 0;
   background: transparent;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .image-wrapper {
   display: inline-block;
   vertical-align: top;
+  white-space: nowrap;
 }
 
 .image-wrapper img {
   height: 220px;
-  width: auto;
+  width: auto;       /* Maintain original aspect ratio */
   display: block;
+  margin: 0;
 }
 
 .image-wrapper p {
-  margin: 6px 0 0 0;
-  padding: 0;
   font-size: 10pt;
-  color: #f0f0f0;
+  margin: 6px 0 0 0;
   text-align: left;
-  width: 100%;
-  line-height: 1.2;
+  color: #f0f0f0;
 }
+
 
 /* Second image */
 .second-image {
@@ -358,20 +355,27 @@ logo, flyer, & further assets</p>
   </div>
 
 <script>
-  // Adjust image-wrapper to match image width
   window.addEventListener('load', () => {
     document.querySelectorAll('.image-wrapper').forEach(wrapper => {
       const img = wrapper.querySelector('img');
-      if (img.complete) {
-        wrapper.style.width = img.offsetWidth + 'px';
-      } else {
-        img.onload = () => {
+      const paragraph = wrapper.querySelector('p');
+
+      function setWidth() {
+        if (img.complete) {
           wrapper.style.width = img.offsetWidth + 'px';
-        };
+          paragraph.style.width = img.offsetWidth + 'px';
+        }
+      }
+
+      if (img.complete) {
+        setWidth();
+      } else {
+        img.onload = setWidth;
       }
     });
   });
 </script>
+
 
 <!-- Flickity Library -->
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
