@@ -25,17 +25,14 @@
       color: #f0f0f0; /* off-white */
     }
 
-    .hero {
-        width: 100vw;
-        height: auto;
-        overflow: hidden;
-      }
-      
-      .hero img {
-        width: 100%;
-        height: auto;        /* Maintains aspect ratio */
-        display: block;      /* Removes whitespace below image */
-      }
+   .hero {
+      background-image: url('cc_heroimage_221025.jpg');
+      background-size: contain;      /* Shows full image without cropping */
+      background-repeat: no-repeat;
+      background-position: top center;
+      width: 100vw;
+      height: 100vh;                 /* Or adjust based on image ratio */
+    }
 
 
     .columns {
@@ -66,7 +63,8 @@
    .second-image {
       width: 100%;
       display: block;
-      margin-top: 10px; /* Add or adjust this */
+      margin-top: 30px; /* Add or adjust this */
+      margin-bottom: 30px;
     }
 
 
@@ -79,36 +77,39 @@
     }
 
     .carousel-wrapper {
-        margin-top: 160px; /* Adjust spacing between columns and carousel */
+        margin-top: 60px; /* Adjust spacing between columns and carousel */
+        background: transparent;
       }
       
       .carousel {
-        background: black;
+        background: transparent;
       }
       
-      .carousel-cell {
-        width: auto;
-        margin-right: 0;
-        text-align: left;
-        position: relative;
+     .carousel-cell {
+        display: inline-block;
+        vertical-align: top;
+        padding: 0;
+        margin: 0;
+        border: none;
+        line-height: 0; /* Prevent extra space from line breaks */
       }
       
       .carousel-cell img {
-        max-height: 250px;
+        max-height: 220px;
         width: auto;
         display: block;
         margin: 0 auto;
         object-fit: contain;
       }
       
-     .carousel-cell p {
-        color: #f0f0f0;
+    .carousel-cell p {
         font-size: 10pt;
-        margin-top: 6px;
+        color: #f0f0f0;
+        margin: 0;
+        padding: 6px 0 0 0;
+        line-height: 1.2;
+        width: 70%;
         text-align: left;
-        max-width: 70%;
-        margin-left: 0;
-        padding-left: 0; 
       }
 
       
@@ -202,9 +203,10 @@
 
   <!-- Hero Section -->
  <div class="hero">
-  <img src="cc_heroimage_221025.jpg" alt="Hero Image">
-</div>
-  
+
+     <!-- Second Full-width Image -->
+  <img src="cc_logo_221025.png" alt="Second Section Image" class="second-image">
+ 
     <div class="columns">
       <div class="column">
         Berlin based collaborative design practice<br>
@@ -319,10 +321,6 @@ logo, flyer, & further assets</p>
     <!-- Add as many images as you like -->
   </div>
 </div>
-
-
-  <!-- Second Full-width Image -->
-  <img src="cc_logo_221025.png" alt="Second Section Image" class="second-image">
 
   <!-- Impressum Section -->
   <div class="impressum">
