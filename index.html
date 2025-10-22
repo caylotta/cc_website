@@ -26,14 +26,17 @@
     }
 
     .hero {
-      background-image: url('cc_heroimage_221025.jpg'); /* Default hero image */
-      background-size: cover;
-      background-position: center;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
+        width: 100vw;
+        height: auto;
+        overflow: hidden;
+      }
+      
+      .hero img {
+        width: 100%;
+        height: auto;        /* Maintains aspect ratio */
+        display: block;      /* Removes whitespace below image */
+      }
+
 
     .columns {
       display: flex;
@@ -198,7 +201,10 @@
 <body>
 
   <!-- Hero Section -->
-  <div class="hero">
+ <div class="hero">
+  <img src="cc_heroimage_201025.png" alt="Hero Image">
+</div>
+  
     <div class="columns">
       <div class="column">
         Berlin based collaborative design practice<br>
