@@ -98,6 +98,85 @@
         width: 100%;
         height: auto;
       }
+      
+      .carousel-container {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        background-color: black; /* Match your site bg */
+        padding: 20px 0;
+      }
+      
+      .carousel-track {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: none; /* Firefox */
+      }
+      .carousel-track::-webkit-scrollbar {
+        display: none; /* Chrome */
+      }
+      
+      .carousel-item {
+        flex: 0 0 auto;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        color: #f0f0f0;
+      }
+      
+      .carousel-item img {
+        display: block;
+        height: auto;
+        max-height: 500px;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+        margin: 0 auto;
+      }
+      
+      .carousel-item p {
+        font-size: 10pt;
+        margin-top: 6px;
+      }
+      
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        font-size: 2rem;
+        padding: 0 12px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      
+      .carousel-btn:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+      
+      .carousel-btn.left {
+        left: 10px;
+      }
+      
+      .carousel-btn.right {
+        right: 10px;
+      }
+      
+      /* Optional: Add touch support tweaks on mobile */
+      @media (max-width: 768px) {
+        .carousel-item img {
+          max-height: 300px;
+        }
+      
+        .carousel-btn {
+          font-size: 1.5rem;
+        }
+}
+
     }
   </style>
 </head>
@@ -126,6 +205,68 @@
     </div>
   </div>
 
+  <!-- Image Carousel Section -->
+<div class="carousel-container">
+  <button class="carousel-btn left">&#10094;</button>
+  <div class="carousel-track">
+    <!-- Repeat this block for each image -->
+    <div class="carousel-item">
+      <img src="image1.jpg" alt="Image 1">
+      <p>Image description 1</p>
+    </div>
+    <div class="carousel-item">
+      <img src="image2.jpg" alt="Image 2">
+      <p>Image description 2</p>
+    </div>
+     <div class="carousel-item">
+      <img src="image3.jpg" alt="Image 3">
+      <p>Image description 1</p>
+    </div>
+     <div class="carousel-item">
+      <img src="image4.jpg" alt="Image 4">
+      <p>Image description 1</p>
+    </div>
+     <div class="carousel-item">
+      <img src="image5.jpg" alt="Image 5">
+      <p>Image description 1</p>
+    </div>
+     <div class="carousel-item">
+      <img src="image6.jpg" alt="Image 6">
+      <p>Image description 1</p>
+    </div>
+     <div class="carousel-item">
+      <img src="image7.jpg" alt="Image 7">
+      <p>Image description 1</p>
+    </div>
+     <div class="carousel-item">
+      <img src="image8.jpg" alt="Image 8">
+      <p>Image description 1</p>
+    </div>
+     <div class="carousel-item">
+      <img src="image9.jpg" alt="Image 9">
+      <p>Image description 1</p>
+    </div>
+     <div class="carousel-item">
+      <img src="image10.jpg" alt="Image 10">
+      <p>Image description 1</p>
+    </div>
+     <div class="carousel-item">
+      <img src="image11.jpg" alt="Image 11">
+      <p>Image description 1</p>
+    </div>
+     <div class="carousel-item">
+      <img src="image12.jpg" alt="Image 12">
+      <p>Image description 1</p>
+    </div>
+     <div class="carousel-item">
+      <img src="image13.jpg" alt="Image 13">
+      <p>Image description 1</p>
+    </div>
+    <!-- Add more items here -->
+  </div>
+  <button class="carousel-btn right">&#10095;</button>
+</div>
+
   <!-- Second Full-width Image -->
   <img src="cc_logo_081025.png" alt="Second Section Image" class="second-image">
 
@@ -133,6 +274,22 @@
   <div class="impressum">
     Your Impressum text goes here. Company info, legal details, contact, etc.
   </div>
+
+  <script>
+  const track = document.querySelector('.carousel-track');
+  const btnLeft = document.querySelector('.carousel-btn.left');
+  const btnRight = document.querySelector('.carousel-btn.right');
+
+  const scrollAmount = 400; // Adjust scroll distance per click
+
+  btnLeft.addEventListener('click', () => {
+    track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+
+  btnRight.addEventListener('click', () => {
+    track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+</script>
 
 </body>
 </html>
