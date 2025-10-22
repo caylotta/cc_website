@@ -339,6 +339,22 @@ logo, flyer, & further assets</p>
       track.scrollLeft = firstReal.offsetLeft;
     }
   }
+
+  window.addEventListener('load', () => {
+    const cells = document.querySelectorAll('.carousel-cell');
+
+    cells.forEach(cell => {
+      const img = cell.querySelector('img');
+      if (img.complete) {
+        cell.style.width = img.offsetWidth + 'px';
+      } else {
+        img.onload = () => {
+          cell.style.width = img.offsetWidth + 'px';
+        };
+      }
+    });
+  });
+   
 </script>
 
 </body>
