@@ -75,7 +75,7 @@
       overflow: hidden;
       width: 100%;
       background-color: black; /* Match your site bg */
-      padding: 20px 0;
+      padding: 100px 0;
     }
     
     .carousel-track {
@@ -289,6 +289,14 @@
   <button class="carousel-btn left">&#10094;</button>
   <div class="carousel-track">
     <!-- Repeat this block for each image -->
+     <div class="carousel-item">
+      <img src="image12.jpg" alt="Image 12">
+      <p>Image description 1</p>
+    </div>
+     <div class="carousel-item">
+      <img src="image13.jpg" alt="Image 13">
+      <p>Image description 1</p>
+    </div>
     <div class="carousel-item">
       <img src="image1.jpg" alt="Image 1">
       <p>Image description 1</p>
@@ -341,6 +349,14 @@
       <img src="image13.jpg" alt="Image 13">
       <p>Image description 1</p>
     </div>
+     <div class="carousel-item">
+      <img src="image1.jpg" alt="Image 1">
+      <p>Image description 1</p>
+    </div>
+    <div class="carousel-item">
+      <img src="image2.jpg" alt="Image 2">
+      <p>Image description 2</p>
+    </div>
     <!-- Add more items here -->
   </div>
   <button class="carousel-btn right">&#10095;</button>
@@ -368,6 +384,42 @@
   btnRight.addEventListener('click', () => {
     track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
   });
+
+  const track = document.querySelector('.carousel-track');
+  const items = document.querySelectorAll('.carousel-item');
+  const itemWidth = items[0].offsetWidth;
+  const duplicatesCount = 2; // Number of duplicated items on each side
+
+  // Start in the real content (skip over duplicates)
+  window.addEventListener('load', () => {
+    track.scrollLeft = itemWidth * duplicatesCount;
+  });
+
+  // Scroll snapping logic (optional)
+  function handleLooping() {
+    const scrollLeft = track.scrollLeft;
+    const maxScroll = track.scrollWidth - track.clientWidth;
+
+    if (scrollLeft <= itemWidth) {
+      // Jump to end copies
+      track.scrollLeft = scrollLeft + itemWidth * (items.length - duplicatesCount * 4);
+    } else if (scrollLeft >= maxScroll - itemWidth) {
+      // Jump to start copies
+      track.scrollLeft = scrollLeft - itemWidth * (items.length - duplicatesCount * 4);
+    }
+  }
+
+  // Call on arrow click
+  btnLeft.addEventListener('click', () => {
+    track.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+    setTimeout(handleLooping, 600);
+  });
+
+  btnRight.addEventListener('click', () => {
+    track.scrollBy({ left: itemWidth, behavior: 'smooth' });
+    setTimeout(handleLooping, 600);
+  });
+
 </script>
 
 </body>
