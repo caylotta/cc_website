@@ -288,7 +288,7 @@
 <div class="carousel-container">
   <button class="carousel-btn left">&#10094;</button>
   <div class="carousel-track">
-    <!-- Repeat this block for each image -->
+    <!-- Duplicated last items (for seamless start) -->
      <div class="carousel-item">
       <img src="image12.jpg" alt="Image 12">
       <p>Image description 1</p>
@@ -297,6 +297,7 @@
       <img src="image13.jpg" alt="Image 13">
       <p>Image description 1</p>
     </div>
+     <!-- Actual items -->
     <div class="carousel-item">
       <img src="image1.jpg" alt="Image 1">
       <p>Image description 1</p>
@@ -349,6 +350,7 @@
       <img src="image13.jpg" alt="Image 13">
       <p>Image description 1</p>
     </div>
+    <!-- Duplicated first items (for seamless end) -->
      <div class="carousel-item">
       <img src="image1.jpg" alt="Image 1">
       <p>Image description 1</p>
@@ -370,56 +372,47 @@
     Your Impressum text goes here. Company info, legal details, contact, etc.
   </div>
 
-  <script>
+ <script>
   const track = document.querySelector('.carousel-track');
   const btnLeft = document.querySelector('.carousel-btn.left');
   const btnRight = document.querySelector('.carousel-btn.right');
+  const items = document.querySelectorAll('.carousel-item');
+  const totalItems = items.length;
+  const duplicatesCount = 2; // You’ve duplicated 2 images at the start & end
 
-  const scrollAmount = 400; // Adjust scroll distance per click
+  // Set initial scroll position to start of real content
+  window.addEventListener('load', () => {
+    const scrollTo = track.children[duplicatesCount].offsetLeft;
+    track.scrollLeft = scrollTo;
+  });
 
+  // Scroll by visible container width
   btnLeft.addEventListener('click', () => {
-    track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    track.scrollBy({ left: -track.offsetWidth, behavior: 'smooth' });
+    setTimeout(checkLoop, 600);
   });
 
   btnRight.addEventListener('click', () => {
-    track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    track.scrollBy({ left: track.offsetWidth, behavior: 'smooth' });
+    setTimeout(checkLoop, 600);
   });
 
-  const track = document.querySelector('.carousel-track');
-  const items = document.querySelectorAll('.carousel-item');
-  const itemWidth = items[0].offsetWidth;
-  const duplicatesCount = 2; // Number of duplicated items on each side
-
-  // Start in the real content (skip over duplicates)
-  window.addEventListener('load', () => {
-    track.scrollLeft = itemWidth * duplicatesCount;
-  });
-
-  // Scroll snapping logic (optional)
-  function handleLooping() {
+  function checkLoop() {
     const scrollLeft = track.scrollLeft;
-    const maxScroll = track.scrollWidth - track.clientWidth;
+    const scrollMax = track.scrollWidth - track.clientWidth;
+    const firstReal = track.children[duplicatesCount];
+    const lastReal = track.children[totalItems - duplicatesCount - 1];
 
-    if (scrollLeft <= itemWidth) {
-      // Jump to end copies
-      track.scrollLeft = scrollLeft + itemWidth * (items.length - duplicatesCount * 4);
-    } else if (scrollLeft >= maxScroll - itemWidth) {
-      // Jump to start copies
-      track.scrollLeft = scrollLeft - itemWidth * (items.length - duplicatesCount * 4);
+    // If near the beginning (in duplicate area), jump to original end
+    if (scrollLeft < firstReal.offsetLeft - 5) {
+      track.scrollLeft = lastReal.offsetLeft;
+    }
+
+    // If near the end (in duplicate area), jump to original start
+    if (scrollLeft > lastReal.offsetLeft + 5) {
+      track.scrollLeft = firstReal.offsetLeft;
     }
   }
-
-  // Call on arrow click
-  btnLeft.addEventListener('click', () => {
-    track.scrollBy({ left: -itemWidth, behavior: 'smooth' });
-    setTimeout(handleLooping, 600);
-  });
-
-  btnRight.addEventListener('click', () => {
-    track.scrollBy({ left: itemWidth, behavior: 'smooth' });
-    setTimeout(handleLooping, 600);
-  });
-
 </script>
 
 </body>
