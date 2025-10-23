@@ -88,7 +88,7 @@ body {
 
 .carousel-cell p {
   font-size: 8pt;
-  color: #f0f0f0;
+  color: #f7f7f2;
   margin: 6px 0 0 0;
   line-height: 1.3;
   width: auto;
@@ -122,7 +122,17 @@ body {
 .carousel-nav img:hover {
   opacity: 1;
 }
-
+    
+.impressum {
+  font-size: 8pt;
+  color: #f7f7f2;
+  margin: 6px 0 0 0;
+  line-height: 1.3;
+  width: auto;
+  text-align: center;
+  word-wrap: break-word;
+  white-space: normal;
+}
 
     /* ----------- MOBILE STYLES ----------- */
     @media (max-width: 768px) {
@@ -294,34 +304,55 @@ body {
     Your Impressum text goes here. Company info, legal details, contact, etc.
   </div>
 
-<!-- Flickity CSS & JS -->
+
+
+<!-- Flickity -->
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
 <script>
-  window.addEventListener('load', () => {
-    // Initialize Flickity
-    const carousel = document.querySelector('.carousel');
-    if (!carousel) return; // safety check
+document.addEventListener("DOMContentLoaded", function() {
+  const carousel = document.querySelector(".carousel");
+  const prevBtn = document.querySelector(".carousel-prev");
+  const nextBtn = document.querySelector(".carousel-next");
 
-    const flkty = new Flickity(carousel, {
-      wrapAround: true,
-      pageDots: false,
-      prevNextButtons: false, // hide default arrows
-      cellAlign: 'left',
-      contain: true,
-      imagesLoaded: true
-    });
+  if (!carousel) {
+    console.error("Carousel not found!");
+    return;
+  }
 
-    // Hook up custom arrows
-    const prevBtn = document.querySelector('.carousel-prev');
-    const nextBtn = document.querySelector('.carousel-next');
-
-    if (prevBtn) prevBtn.addEventListener('click', () => flkty.previous());
-    if (nextBtn) nextBtn.addEventListener('click', () => flkty.next());
+  // Initialize Flickity
+  const flkty = new Flickity(carousel, {
+    wrapAround: true,
+    cellAlign: "left",
+    contain: true,
+    imagesLoaded: true,
+    prevNextButtons: false,
+    pageDots: false
   });
-</script>
 
+  // Debugging output (you can remove this later)
+  console.log("Flickity initialized:", flkty);
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", function() {
+      console.log("Prev clicked");
+      flkty.previous();
+    });
+  } else {
+    console.warn("Prev button not found!");
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", function() {
+      console.log("Next clicked");
+      flkty.next();
+    });
+  } else {
+    console.warn("Next button not found!");
+  }
+});
+</script>
 
 </body>
 </html>
