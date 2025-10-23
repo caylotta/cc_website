@@ -76,7 +76,7 @@ body {
   background: transparent;
   display: inline-block;
   vertical-align: top;
-  margin-bottom: 100px;
+  margin-bottom: 75px;
   padding-top: 450px;
 }
 
@@ -294,7 +294,7 @@ body {
     Your Impressum text goes here. Company info, legal details, contact, etc.
   </div>
 
-<!-- Flickity -->
+<!-- Flickity CSS & JS -->
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
@@ -302,10 +302,12 @@ body {
   window.addEventListener('load', () => {
     // Initialize Flickity
     const carousel = document.querySelector('.carousel');
+    if (!carousel) return; // safety check
+
     const flkty = new Flickity(carousel, {
       wrapAround: true,
       pageDots: false,
-      prevNextButtons: false, // we hide Flickity's default buttons
+      prevNextButtons: false, // hide default arrows
       cellAlign: 'left',
       contain: true,
       imagesLoaded: true
@@ -315,12 +317,11 @@ body {
     const prevBtn = document.querySelector('.carousel-prev');
     const nextBtn = document.querySelector('.carousel-next');
 
-    if (prevBtn && nextBtn) {
-      prevBtn.addEventListener('click', () => flkty.previous());
-      nextBtn.addEventListener('click', () => flkty.next());
-    }
+    if (prevBtn) prevBtn.addEventListener('click', () => flkty.previous());
+    if (nextBtn) nextBtn.addEventListener('click', () => flkty.next());
   });
 </script>
+
 
 </body>
 </html>
