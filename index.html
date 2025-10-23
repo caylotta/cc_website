@@ -63,6 +63,10 @@ body {
   cursor: pointer;
 }
 
+.flickity-button {
+  display: none !important;
+}
+
 /* Carousel */
 .carousel {
   background: transparent;
@@ -83,7 +87,7 @@ body {
 }
 
 .carousel-cell p {
-  font-size: 10pt;
+  font-size: 8pt;
   color: #f0f0f0;
   margin: 6px 0 0 0;
   line-height: 1.3;
@@ -93,7 +97,30 @@ body {
   white-space: normal;
 }
 
+.carousel-nav {
+  position: fixed;              /* Keeps buttons floating as you scroll */
+  top: 65%;                     /* Bottom third of the screen */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+  pointer-events: none;         /* So they don’t block other sections */
+  z-index: 10;
+}
 
+.carousel-nav img {
+  width: 40px;                  /* Adjust to your design */
+  height: auto;
+  cursor: pointer;
+  pointer-events: all;          /* Re-enable click on images */
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.carousel-nav img:hover {
+  opacity: 1;
+}
 
     /* ----------- MOBILE STYLES ----------- */
     @media (max-width: 768px) {
@@ -259,6 +286,11 @@ body {
   </div>
 </div>
 
+<div class="carousel-nav">
+  <img src="cc_arrow_left.png" alt="Previous" class="carousel-prev">
+  <img src="cc_arrow_right.png" alt="Next" class="carousel-next">
+</div>
+
   
   <!-- Impressum Section -->
   <div class="impressum">
@@ -268,6 +300,23 @@ body {
 <!-- Flickity -->
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+  <script>
+  window.addEventListener('load', () => {
+    const carousel = document.querySelector('.carousel');
+    const flkty = new Flickity(carousel, {
+      wrapAround: true,
+      pageDots: false,
+      cellAlign: 'left',
+      contain: false,
+      imagesLoaded: true
+    });
+
+    document.querySelector('.carousel-prev').addEventListener('click', () => flkty.previous());
+    document.querySelector('.carousel-next').addEventListener('click', () => flkty.next());
+  });
+</script>
+
 
 </body>
 </html>
