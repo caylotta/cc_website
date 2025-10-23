@@ -98,22 +98,23 @@ body {
 }
 
 .carousel-nav {
-  position: fixed;              /* Keeps buttons floating as you scroll */
-  top: 65%;                     /* Bottom third of the screen */
+  position: fixed;
+  top: 80%;                     /* place in lower third of the viewport */
   left: 0;
-  width: 100%;
+  right: 0;                     /* ensures full width */
   display: flex;
   justify-content: space-between;
-  padding: 0 40px;
-  pointer-events: none;         /* So they don’t block other sections */
-  z-index: 10;
+  align-items: center;
+  padding: 0 100px;              /* padding from screen edges */
+  pointer-events: none;         /* allow clicks to pass through background */
+  z-index: 9999;                /* make sure it floats above all sections */
 }
 
 .carousel-nav img {
-  width: 40px;                  /* Adjust to your design */
+  width: 40px;
   height: auto;
   cursor: pointer;
-  pointer-events: all;          /* Re-enable click on images */
+  pointer-events: all;          /* allow clicking the arrows */
   opacity: 0.8;
   transition: opacity 0.2s ease;
 }
@@ -121,6 +122,7 @@ body {
 .carousel-nav img:hover {
   opacity: 1;
 }
+
 
     /* ----------- MOBILE STYLES ----------- */
     @media (max-width: 768px) {
