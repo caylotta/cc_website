@@ -70,33 +70,27 @@ body {
 
 .carousel-cell {
   background: transparent;
+  display: inline-block;
+  vertical-align: top;
   margin: 0;
   padding: 0;
-  display: inline-block;
-  vertical-align: top;
 }
 
-.image-wrapper {
-  display: inline-block;
-  vertical-align: top;
-  text-align: left;
-}
-
-.image-wrapper img {
-  height: 220px;
-  width: auto;
+.carousel-cell img {
   display: block;
+  height: 220px;   /* uniform height */
+  width: auto;     /* variable width by aspect ratio */
 }
 
-.image-wrapper p {
+.carousel-cell p {
   font-size: 10pt;
   color: #f0f0f0;
   margin: 6px 0 0 0;
   line-height: 1.3;
-  white-space: normal;
-  word-wrap: break-word;
   width: 100%;
-  max-width: 100%;
+  text-align: left;
+  word-wrap: break-word;
+  white-space: normal;
 }
 
 
@@ -200,123 +194,95 @@ body {
   </div>
 
   <!-- Flickity Carousel Section -->
-<div class="carousel-wrapper">
-  <div class="carousel" data-flickity='{ "wrapAround": true, "pageDots": false, "imagesLoaded": true, "prevNextButtons": true }'>
+<div class="carousel" 
+     data-flickity='{ "wrapAround": true, "pageDots": false, "cellAlign": "left" }'>
     <!-- Repeat for all your images -->
     <div class="carousel-cell">
-       <div class="image-wrapper">
       <img src="image1.jpg" alt="Image 1">
       <p>Wölfinnen:
 book design for the play „Wölfinnen“ by Julia Haenni;
 design & print production;
 awarded with “Förderpreis für Jungebuchgestaltung”
 </p>
-    </div>
       </div>
     <div class="carousel-cell">
-       <div class="image-wrapper">
       <img src="image2.jpg" alt="Image 2">
       <p>Today We Celebrate:
 protest poster for Feminist Fight Day (Woman‘s Day/8th of May);
 Text by Kai Krämer</p>
-    </div>
       </div>
     <div class="carousel-cell">
-       <div class="image-wrapper">
       <img src="image3.jpg" alt="Image 2">
       <p>Liga Typeface:
 type specimen for in-house ornamental-type-set Liga;
 Type Design & print production</p>
-    </div>
       </div>
     <div class="carousel-cell">
-       <div class="image-wrapper">
       <img src="image4.jpg" alt="Image 2">
       <p>The Equal Opportunities Commission:
 corporate identity for Muthesius University of Fine Arts;
 logo, flyer, & further assets</p>
-    </div>
       </div>
     <div class="carousel-cell">
-       <div class="image-wrapper">
       <img src="image5.jpg" alt="Image 2">
       <p>Humble Encounters meets Freiraum:
 event identity for Bunker Club Kiel;
 brick poster & social media content</p>
-     </div>
       </div>
     <div class="carousel-cell">
-       <div class="image-wrapper">
       <img src="image6.jpg" alt="Image 2">
       <p>Vier Erzählungen:
 book design for shortstories by Gustave Flaubert;
 –studental project–</p>
-   </div>
       </div>
     <div class="carousel-cell">
-       <div class="image-wrapper">
       <img src="image7.jpg" alt="Image 2">
       <p>Fever Dreams:
 exhibition poster for Akademie der Künste Wien</p>
-     </div>
       </div>
     <div class="carousel-cell">
-       <div class="image-wrapper">
       <img src="image8.jpg" alt="Image 2">
       <p>Black Flames:
 custom lettering for song visualizer (Julz Nartey – Black Flames);
 Type Design</p>
-     </div>
       </div>
     <div class="carousel-cell">
-       <div class="image-wrapper">
       <img src="image9.jpg" alt="Image 2">
       <p>Humble Encounters meets Freiraum:
 event identity for Bunker Club Kiel;
 brick poster & social media content</p>
-    </div>
       </div>
     <div class="carousel-cell">
-       <div class="image-wrapper">
       <img src="image10.jpg" alt="Image 2">
       <p>Analcolico:
 corporate identiy for event series;
 logo, poster  & social media content</p>
-     </div>
       </div>
     <div class="carousel-cell">
-       <div class="image-wrapper">
       <img src="image11.jpg" alt="Image 2">
       <p>Humble Encounters meets Freiraum:
 event identity for Bunker Club Kiel;
 brick poster & social media content</p>
-     </div>
       </div>
     <div class="carousel-cell">
-       <div class="image-wrapper">
       <img src="image12.jpg" alt="Image 2">
       <p>The Equal Opportunities Commission:
 corporate identity for Muthesius University of Fine Arts;
 logo, flyer, & further assets</p>
-     </div>
       </div>
     <div class="carousel-cell">
-       <div class="image-wrapper">
       <img src="image13.jpg" alt="Image 2">
       <p>Wölfinnen:
 book design for the play „Wölfinnen“ by Julia Haenni;
 design & print production;
 awarded with “Förderpreis für Jungebuchgestaltung”
 </p>
-     </div>
       </div>
     <div class="carousel-cell">
-       <div class="image-wrapper">
       <img src="image14.jpg" alt="Image 2">
       <p>The Equal Opportunities Commission:
 corporate identity for Muthesius University of Fine Arts;
 logo, flyer, & further assets</p>
-    </div>
       </div>
     <!-- Add as many images as you like -->
   </div>
@@ -331,55 +297,6 @@ logo, flyer, & further assets</p>
 <!-- Flickity -->
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-<script>
-  function setWrapperWidths() {
-    document.querySelectorAll('.carousel-cell').forEach(cell => {
-      const wrapper = cell.querySelector('.image-wrapper');
-      const img = wrapper.querySelector('img');
-      const text = wrapper.querySelector('p');
-
-      if (img.complete) {
-        const width = img.offsetWidth;
-        wrapper.style.width = width + 'px';
-        text.style.width = width + 'px';
-        cell.style.width = width + 'px';
-      } else {
-        img.onload = () => {
-          const width = img.offsetWidth;
-          wrapper.style.width = width + 'px';
-          text.style.width = width + 'px';
-          cell.style.width = width + 'px';
-        };
-      }
-    });
-  }
-
-  window.addEventListener('load', () => {
-    // Step 1: set initial widths
-    setWrapperWidths();
-
-    // Step 2: initialize Flickity AFTER widths are set
-    const carousel = document.querySelector('.carousel');
-    const flkty = new Flickity(carousel, {
-      wrapAround: true,
-      cellAlign: 'left',
-      contain: false,          // allow natural widths
-      imagesLoaded: true,
-      pageDots: false,
-      prevNextButtons: true,
-      freeScroll: false
-    });
-
-    // Step 3: once all images are definitely loaded, refresh layout
-    setTimeout(() => {
-      setWrapperWidths();
-      flkty.reloadCells();
-      flkty.resize();
-    }, 500);
-  });
-</script>
 
 </body>
 </html>
