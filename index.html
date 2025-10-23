@@ -77,12 +77,12 @@ body {
   display: inline-block;
   vertical-align: top;
   margin-bottom: 100px;
-  padding-top: 200px;
+  padding-top: 350px;
 }
 
 .carousel-cell img {
   display: block;
-  height: 220px;   /* uniform height */
+  height: 300px;   /* uniform height */
   width: auto;     /* variable width by aspect ratio */
 }
 
@@ -298,22 +298,29 @@ body {
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
-  <script>
+<script>
   window.addEventListener('load', () => {
+    // Initialize Flickity
     const carousel = document.querySelector('.carousel');
     const flkty = new Flickity(carousel, {
       wrapAround: true,
       pageDots: false,
+      prevNextButtons: false, // we hide Flickity's default buttons
       cellAlign: 'left',
-      contain: false,
+      contain: true,
       imagesLoaded: true
     });
 
-    document.querySelector('.carousel-prev').addEventListener('click', () => flkty.previous());
-    document.querySelector('.carousel-next').addEventListener('click', () => flkty.next());
+    // Hook up custom arrows
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+
+    if (prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => flkty.previous());
+      nextBtn.addEventListener('click', () => flkty.next());
+    }
   });
 </script>
-
 
 </body>
 </html>
