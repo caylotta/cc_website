@@ -153,13 +153,18 @@ a:hover {
     @media (max-width: 768px) {
 
       body {
-        background: url('cc_heroimage_mobile.jpg') no-repeat top center;
+        background: url('cc_heroimage_mobile.png') no-repeat top center;
         background-size: 100% auto; /* Full width, natural height */
         background-attachment: scroll; /* Let it scroll with page */
         background-repeat: no-repeat;
         background-color: black; /* Optional fallback */
         margin: 0;
         padding: 0;
+
+       .hero {
+          background-image: url('cc_logo_221025.png');
+          opacity: 0;
+        }
         
       .columns {
         flex-direction: column;
