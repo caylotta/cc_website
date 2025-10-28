@@ -43,7 +43,7 @@ body {
   padding-bottom: 0px;
 }
 
-.column {
+.column-left {
   flex: 1;
   text-align: center;
   font-size: 10pt;
@@ -55,6 +55,12 @@ body {
   align-items: center;
 }
 
+.column-right {
+  flex: 1;
+  text-align: center;
+  font-size: 10pt;
+}
+    
 .button-image {
   max-width: 150px;
   height: auto;
@@ -173,12 +179,43 @@ a:hover {
         margin-top: 950px
       }
 
-      .column {
-        font-size: 8pt;
+      .column-left {
+        flex: 1;
         text-align: center;
+        font-size: 40pt;
+        font-weight: 800;
+        text-transform: uppercase;
+        word-break: keep-all;
+        overflow-wrap: normal;
+      }
+      
+      .column.center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .column-right {
+        flex: 1;
+        text-align: center;
+        font-size: 10pt;
       }
 
-  
+      a {
+        color: #f7f7f2;
+        font-size: 10pt
+        text-decoration: underline; /* entfernt Unterstreichung */
+        font-weight: 400;      /* z. B. semibold */
+        transition: color 0.2s ease;
+      }
+      
+      a:hover {
+        color: #f7f7f2;
+        font-size: 10pt
+        text-decoration: underline; /* entfernt Unterstreichung */
+        font-weight: 600;     
+      }
+        
       .second-image {
         width: 100%;
         height: auto;
@@ -246,15 +283,15 @@ a:hover {
   <!-- Hero Section -->
 <div class="hero">
   <div class="columns">
-      <div class="column">
-        <br><a href="mailto:contact@ccharm.studio">contact</a><br><br>
-        Ccharm is a Berlin-based collaborative design practice<br>focused on creating visual work across disciplines.<br><br><br>Our practice values process over prescription, embracing<br>open dialogue and shared authorship as means to shape<br>meaningful visual outcomes.
+      <div class="column-left">
+        <a href="#works">projects</a><br><br>
+        Ccharm is a Berlin-based collaborative design practice<br>focused on creating visual work across disciplines.<br><br><br>Our practice values process over prescription, embracing<br><a href="mailto:contact@ccharm.studio">open dialogue</a> and shared authorship as means to shape<br>meaningful visual outcomes.
       </div>
       
       <div class="column center"></div>
       
-      <div class="column">
-      <a href="#works">projects</a><br><br>
+      <div class="column-right">
+      <br><a href="mailto:contact@ccharm.studio">contact</a><br><br>
        We work closely with our clients to uncover cherished value,<br>build coherent narratives, and craft authentic visual identities.<br><br><br>We see design as an open process, shaped through<br>dialogue and shared exploration rather than fixed solutions.
       </div>
     </div>
