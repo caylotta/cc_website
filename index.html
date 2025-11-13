@@ -23,6 +23,13 @@ body {
   color: #f7f7f2;
 }
 
+.carousel:focus,
+.flickity-enabled:focus,
+.flickity-slider:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 /* Hero image placeholder (if used) */
 .hero {
   width: 100vw;
@@ -182,7 +189,6 @@ a:hover {
         flex-direction: column;
         gap: 10px;
         padding-top: 23px
-        padding-bottom: 13px
       }
 
       .column-left {
@@ -257,7 +263,7 @@ a:hover {
         display: inline-block;
         vertical-align: top;
         margin-bottom: 250px;
-        padding-top: 20px;
+        padding-top: 80px;
       }
       
       .carousel-cell img {
