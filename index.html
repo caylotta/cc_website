@@ -458,8 +458,8 @@ into a poster & social media content</p>
 
 
 <!-- Flickity -->
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -472,38 +472,30 @@ document.addEventListener("DOMContentLoaded", function() {
     return;
   }
 
-  // Initialize Flickity
-  const flkty = new Flickity(carousel, {
-    wrapAround: true,
-    cellAlign: "left",
-    contain: true,
-    imagesLoaded: true,
-    prevNextButtons: false,
-    pageDots: false
+  // Wait for all images inside the carousel to fully load
+  imagesLoaded(carousel, function() {
+    console.log("All carousel images loaded");
+
+    // Now initialize Flickity safely
+    const flkty = new Flickity(carousel, {
+      wrapAround: true,
+      cellAlign: "left",
+      contain: true,
+      prevNextButtons: false,
+      pageDots: false
+    });
+
+    // Hook up navigation buttons
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => flkty.previous());
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => flkty.next());
+    }
   });
-
-  // Debugging output (you can remove this later)
-  console.log("Flickity initialized:", flkty);
-
-  if (prevBtn) {
-    prevBtn.addEventListener("click", function() {
-      console.log("Prev clicked");
-      flkty.previous();
-    });
-  } else {
-    console.warn("Prev button not found!");
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener("click", function() {
-      console.log("Next clicked");
-      flkty.next();
-    });
-  } else {
-    console.warn("Next button not found!");
-  }
 });
 </script>
+
 
 </body>
 </html>
